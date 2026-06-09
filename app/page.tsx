@@ -35,7 +35,7 @@ export default function Home() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut",
+        repeatType: "loop" as const,
       },
     },
   };
@@ -47,7 +47,7 @@ export default function Home() {
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut",
+        repeatType: "loop" as const,
       },
     },
   };
@@ -58,7 +58,7 @@ export default function Home() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut",
+        repeatType: "loop" as const,
       },
     },
   };
@@ -119,7 +119,7 @@ export default function Home() {
             <motion.div variants={pulseVariants} animate="animate">
               <Heart className="w-8 h-8 text-pink-400" fill="currentColor" />
             </motion.div>
-            <motion.div 
+            <motion.div
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
@@ -193,7 +193,7 @@ export default function Home() {
             whileHover={{ y: -10 }}
           >
             {/* Glassmorphism card background blur effect */}
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-10 blur transition duration-500"
               whileHover={{ opacity: 0.15 }}
             ></motion.div>
@@ -210,11 +210,11 @@ export default function Home() {
                 dengan kata-kata.
               </p>
               <div className="flex justify-center mt-6">
-                <motion.div 
-                  variants={pulseVariants} 
-                  animate="animate"
-                >
-                  <Heart className="w-10 h-10 text-pink-400" fill="currentColor" />
+                <motion.div variants={pulseVariants} animate="animate">
+                  <Heart
+                    className="w-10 h-10 text-pink-400"
+                    fill="currentColor"
+                  />
                 </motion.div>
               </div>
             </div>
@@ -267,7 +267,7 @@ export default function Home() {
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
               >
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 blur transition duration-500"
                   whileHover={{ opacity: 0.3 }}
                 ></motion.div>
@@ -321,7 +321,7 @@ export default function Home() {
             viewport={{ once: true }}
             whileHover={{ y: -10 }}
           >
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-5 blur transition duration-500"
               whileHover={{ opacity: 0.08 }}
             ></motion.div>
@@ -387,19 +387,19 @@ export default function Home() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.08, rotate: 2 }}
               >
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-pink-600 to-purple-600 opacity-0 group-hover:opacity-20 transition duration-300"
                   whileHover={{ opacity: 0.3 }}
                 ></motion.div>
                 <div className="w-full h-full bg-gradient-to-br from-purple-900/40 to-pink-900/40 border border-white/10 group-hover:border-pink-400/30 transition duration-300 flex items-center justify-center rounded-xl">
-                  <motion.div 
+                  <motion.div
                     className="opacity-40 group-hover:opacity-60 transition duration-300"
                     whileHover={{ scale: 1.2, rotate: 10 }}
                   >
                     <Camera className="w-16 h-16" />
                   </motion.div>
                 </div>
-                <motion.p 
+                <motion.p
                   className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition duration-300"
                   initial={{ y: 10 }}
                   whileHover={{ y: 0 }}
@@ -445,23 +445,23 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center gap-4 mb-12">
-              <motion.div 
-                variants={pulseVariants} 
-                animate="animate"
-              >
-                <Heart className="w-12 h-12 text-pink-400" fill="currentColor" />
+              <motion.div variants={pulseVariants} animate="animate">
+                <Heart
+                  className="w-12 h-12 text-pink-400"
+                  fill="currentColor"
+                />
               </motion.div>
-              <motion.div 
+              <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               >
                 <Sparkles className="w-12 h-12 text-yellow-300" />
               </motion.div>
-              <motion.div 
-                variants={pulseVariants} 
-                animate="animate"
-              >
-                <Heart className="w-12 h-12 text-pink-400" fill="currentColor" />
+              <motion.div variants={pulseVariants} animate="animate">
+                <Heart
+                  className="w-12 h-12 text-pink-400"
+                  fill="currentColor"
+                />
               </motion.div>
             </div>
 
@@ -471,7 +471,7 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               className="relative px-8 sm:px-12 py-4 rounded-full font-semibold text-lg"
             >
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-100 group-hover:opacity-75 transition duration-300"
                 whileHover={{ boxShadow: "0 0 30px rgba(236, 72, 153, 0.6)" }}
               ></motion.div>

@@ -9,14 +9,17 @@ Selamat datang! Ini adalah panduan lengkap untuk website ulang tahun romantis An
 ## 🚀 Jika Anda Ingin...
 
 ### ⚡ MULAI DENGAN CEPAT (5 Menit)
+
 → Baca: **`QUICK_START.md`**
 
 Ini guide tercepat untuk langsung lihat website berjalan. Cocok untuk yang sudah kenal Next.js.
 
 ### 📚 MEMBACA DOKUMENTASI LENGKAP (20 Menit)
+
 → Baca: **`README.md`**
 
 Dokumentasi komprehensif dengan:
+
 - Fitur apa saja
 - Cara install
 - Customization guide
@@ -24,18 +27,22 @@ Dokumentasi komprehensif dengan:
 - Tech stack info
 
 ### 🌐 DEPLOY KE VERCEL (10 Menit)
+
 → Baca: **`DEPLOYMENT.md`**
 
 Step-by-step guide untuk:
+
 - Deploy via GitHub (recommended)
 - Deploy via Vercel CLI
 - Setup custom domain
 - Continuous deployment
 
 ### 💻 SETUP DEVELOPMENT ENVIRONMENT (5 Menit)
+
 → Baca: **`INSTALLATION_GUIDE.md`**
 
 Quick reference untuk:
+
 - Start dev server
 - Available commands
 - Make first changes
@@ -43,9 +50,11 @@ Quick reference untuk:
 - Troubleshooting
 
 ### 📋 LIHAT RINGKASAN PROJECT (5 Menit)
+
 → Baca: **`PROJECT_SUMMARY.md`**
 
 Ringkasan komprehensif:
+
 - Apa yang sudah dikerjakan
 - Project structure
 - Customization options
@@ -56,14 +65,14 @@ Ringkasan komprehensif:
 
 ## 📑 Semua Dokumentasi
 
-| File | Untuk | Waktu |
-|------|-------|-------|
-| **QUICK_START.md** | Mulai cepat tanpa banyak info | 5 min |
-| **README.md** | Dokumentasi lengkap & detail | 20 min |
-| **INSTALLATION_GUIDE.md** | Setup & troubleshooting | 5 min |
-| **DEPLOYMENT.md** | Deploy ke Vercel | 10 min |
-| **PROJECT_SUMMARY.md** | Ringkasan project & next steps | 5 min |
-| **INDEX.md** | Panduan membaca docs (file ini) | 2 min |
+| File                      | Untuk                           | Waktu  |
+| ------------------------- | ------------------------------- | ------ |
+| **QUICK_START.md**        | Mulai cepat tanpa banyak info   | 5 min  |
+| **README.md**             | Dokumentasi lengkap & detail    | 20 min |
+| **INSTALLATION_GUIDE.md** | Setup & troubleshooting         | 5 min  |
+| **DEPLOYMENT.md**         | Deploy ke Vercel                | 10 min |
+| **PROJECT_SUMMARY.md**    | Ringkasan project & next steps  | 5 min  |
+| **INDEX.md**              | Panduan membaca docs (file ini) | 2 min  |
 
 ---
 
@@ -120,36 +129,43 @@ Ringkasan komprehensif:
 ## 🔍 Find Help By Topic
 
 ### Setup & Installation
+
 - **Quick:** `QUICK_START.md` → "30 Second Setup"
 - **Detailed:** `README.md` → "Quick Start" section
 - **Troubleshooting:** `INSTALLATION_GUIDE.md` → "Troubleshooting"
 
 ### Customization & Design
+
 - **Quick:** `QUICK_START.md` → "Customization (5 Minutes)"
 - **Detailed:** `README.md` → "Customization" section
 - **All options:** `PROJECT_SUMMARY.md` → "Customization Options"
 
 ### Adding Photos
+
 - **Quick:** `QUICK_START.md` → "Tambah Foto (10 Menit)"
 - **Detailed:** `README.md` → "Menambahkan Foto"
 - **Troubleshooting:** `INSTALLATION_GUIDE.md` → "Add Photos to Gallery"
 
 ### Deployment & Going Live
+
 - **Quick:** `INSTALLATION_GUIDE.md` → "Ready for Deployment"
 - **Detailed:** `DEPLOYMENT.md` → All 3 methods
 - **Custom domain:** `DEPLOYMENT.md` → "Custom Domain"
 - **Troubleshooting:** `DEPLOYMENT.md` → "Troubleshooting"
 
 ### Project Structure & What Was Created
+
 - **Overview:** `PROJECT_SUMMARY.md` → "Project Structure"
 - **File guide:** `PROJECT_SUMMARY.md` → "File-File Penting"
 - **What was done:** `PROJECT_SUMMARY.md` → "Apa Yang Sudah Dikerjakan"
 
 ### Technology & Tech Stack
+
 - **Overview:** `README.md` → "Tech Stack"
 - **Details:** `PROJECT_SUMMARY.md` → "🔧 Tech Stack"
 
 ### Browser Support & Performance
+
 - **Performance:** `PROJECT_SUMMARY.md` → "📊 Performance"
 - **Browser support:** `PROJECT_SUMMARY.md` → "💻 Browser Support"
 
@@ -158,26 +174,33 @@ Ringkasan komprehensif:
 ## 📱 For Quick Copy-Paste
 
 ### Start dev server
+
 ```bash
 cd c:\Users\BUDIONO SIREGAR\ultah-web
 npm run dev
 ```
+
 See: `INSTALLATION_GUIDE.md`
 
 ### Build for production
+
 ```bash
 npm run build
 ```
+
 See: `INSTALLATION_GUIDE.md`
 
 ### Deploy to Vercel
+
 See: `DEPLOYMENT.md` (full step-by-step)
 
 ### Deploy via CLI
+
 ```bash
 npm i -g vercel
 vercel
 ```
+
 See: `DEPLOYMENT.md` → "Cara 2"
 
 ---
@@ -185,24 +208,31 @@ See: `DEPLOYMENT.md` → "Cara 2"
 ## ❓ FAQ Quick Links
 
 ### "Saya ingin mulai sekarang!"
+
 → Run `npm run dev` → Buka http://localhost:3000
 
 ### "Gimana cara customize?"
+
 → Baca: `QUICK_START.md` → "Customization (5 Minutes)"
 
 ### "Cara upload foto?"
+
 → Baca: `QUICK_START.md` → "Tambah Foto (10 Menit)"
 
 ### "Cara deploy ke Vercel?"
+
 → Baca: `DEPLOYMENT.md` → Ikuti step by step
 
 ### "Project structure apa?"
+
 → Baca: `PROJECT_SUMMARY.md` → "📁 Project Structure"
 
 ### "Ada error, gimana?"
+
 → Baca: `INSTALLATION_GUIDE.md` → "🆘 Quick Troubleshooting"
 
 ### "Setelah deploy, apa?"
+
 → Baca: `DEPLOYMENT.md` → "🎉 Selesai!"
 
 ---
@@ -210,16 +240,19 @@ See: `DEPLOYMENT.md` → "Cara 2"
 ## 🎯 Recommended Reading Order
 
 ### Untuk pemula Next.js:
+
 1. `README.md` (full documentation)
 2. `QUICK_START.md` (practical guide)
 3. `DEPLOYMENT.md` (when ready to deploy)
 
 ### Untuk yang sudah familiar:
+
 1. `QUICK_START.md` (overview)
 2. Jump ke sections yang perlu
 3. `DEPLOYMENT.md` (deploy section)
 
 ### Untuk yang super buru-buru:
+
 1. `QUICK_START.md` (5 min read)
 2. Start making changes
 3. `DEPLOYMENT.md` (when ready)
@@ -228,16 +261,16 @@ See: `DEPLOYMENT.md` → "Cara 2"
 
 ## 📞 Where to Find Answers
 
-| Question | Answer In |
-|----------|-----------|
-| How do I start? | `QUICK_START.md` |
-| What can I customize? | `README.md` or `QUICK_START.md` |
-| How do I add photos? | `QUICK_START.md` or `README.md` |
-| How do I deploy? | `DEPLOYMENT.md` |
-| What was created? | `PROJECT_SUMMARY.md` |
-| How do I troubleshoot? | `INSTALLATION_GUIDE.md` |
-| What's the project structure? | `PROJECT_SUMMARY.md` |
-| What technology is used? | `README.md` or `PROJECT_SUMMARY.md` |
+| Question                      | Answer In                           |
+| ----------------------------- | ----------------------------------- |
+| How do I start?               | `QUICK_START.md`                    |
+| What can I customize?         | `README.md` or `QUICK_START.md`     |
+| How do I add photos?          | `QUICK_START.md` or `README.md`     |
+| How do I deploy?              | `DEPLOYMENT.md`                     |
+| What was created?             | `PROJECT_SUMMARY.md`                |
+| How do I troubleshoot?        | `INSTALLATION_GUIDE.md`             |
+| What's the project structure? | `PROJECT_SUMMARY.md`                |
+| What technology is used?      | `README.md` or `PROJECT_SUMMARY.md` |
 
 ---
 
