@@ -20,6 +20,9 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Happy Birthday, Sayangku ❤️",
+  icons: {
+    icon: "favicon.png",
+  },
   description: "A romantic birthday website for my love",
 };
 
