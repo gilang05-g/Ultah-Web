@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import {
   Heart,
   Sparkles,
@@ -14,20 +14,133 @@ import {
   Flower2,
 } from "lucide-react";
 
+/* ─── Fungsi Random Deterministik ──────────────────────────────────────── */
+function seededRandom(seed: number) {
+  let state = seed;
+  return () => {
+    state = (state * 16807) % 2147483647;
+    return (state - 1) / 2147483646;
+  };
+}
+
+/* ─── Fixed Background Images ──────────────────────────────────────────── */
+function FixedBackgroundImages() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
+      {/* Bunga kiri atas - Persegi besar */}
+      <div className="absolute -top-8 -left-8 w-72 h-80 sm:w-96 sm:h-[28rem] opacity-20 sm:opacity-30">
+        <img
+          src="https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=500&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[2px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga kanan bawah - Persegi besar */}
+      <div className="absolute -bottom-12 -right-12 w-80 h-72 sm:w-[28rem] sm:h-96 opacity-15 sm:opacity-25">
+        <img
+          src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=500&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[2px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga kiri tengah - Persegi kecil */}
+      <div className="absolute top-1/3 -left-4 w-40 h-48 sm:w-52 sm:h-60 opacity-10 sm:opacity-20">
+        <img
+          src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[1px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga kanan atas - Persegi sedang */}
+      <div className="absolute top-[10%] -right-4 w-48 h-40 sm:w-64 sm:h-52 opacity-10 sm:opacity-20">
+        <img
+          src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[2px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga bawah tengah kiri - Persegi kecil */}
+      <div className="absolute bottom-[25%] left-[8%] w-32 h-32 sm:w-44 sm:h-44 opacity-10 sm:opacity-15">
+        <img
+          src="https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[1px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Mawar kanan tengah - Persegi kecil */}
+      <div className="absolute top-[58%] -right-2 w-36 h-32 sm:w-48 sm:h-44 opacity-10 sm:opacity-18">
+        <img
+          src="https://images.unsplash.com/photo-1457089328109-e5d9bd499191?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[1px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga kecil pojok kiri bawah */}
+      <div className="absolute bottom-[5%] left-[2%] w-28 h-24 sm:w-36 sm:h-32 opacity-8 sm:opacity-12">
+        <img
+          src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[1px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bunga kecil pojok kanan atas */}
+      <div className="absolute top-[2%] right-[30%] w-24 h-28 sm:w-32 sm:h-36 opacity-8 sm:opacity-12">
+        <img
+          src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=300&q=80"
+          alt=""
+          className="w-full h-full object-cover blur-[1px] mix-blend-screen rounded-xl border border-white"
+        />
+      </div>
+
+      {/* Bokeh pink atas kiri */}
+      <div className="absolute top-[8%] left-[20%] w-3 h-3 rounded-full bg-pink-400/30 blur-[1px]" />
+      <div className="absolute top-[12%] left-[25%] w-2 h-2 rounded-full bg-purple-400/25 blur-[1px]" />
+      <div className="absolute top-[6%] left-[35%] w-4 h-4 rounded-full bg-pink-300/20 blur-[2px]" />
+
+      {/* Bokeh pink kanan bawah */}
+      <div className="absolute bottom-[15%] right-[25%] w-3 h-3 rounded-full bg-pink-400/25 blur-[1px]" />
+      <div className="absolute bottom-[20%] right-[20%] w-2 h-2 rounded-full bg-purple-300/20 blur-[1px]" />
+      <div className="absolute bottom-[10%] right-[30%] w-5 h-5 rounded-full bg-pink-300/15 blur-[2px]" />
+
+      {/* Bokeh kuning tengah */}
+      <div className="absolute top-[45%] left-[50%] w-2 h-2 rounded-full bg-yellow-400/20 blur-[1px]" />
+      <div className="absolute top-[55%] right-[40%] w-3 h-3 rounded-full bg-yellow-300/15 blur-[2px]" />
+
+      {/* Garis dekoratif tipis kiri */}
+      <div className="absolute top-[20%] left-0 w-px h-32 bg-gradient-to-b from-transparent via-pink-500/20 to-transparent" />
+      <div className="absolute top-[70%] left-0 w-px h-24 bg-gradient-to-b from-transparent via-purple-500/15 to-transparent" />
+
+      {/* Garis dekoratif tipis kanan */}
+      <div className="absolute top-[30%] right-0 w-px h-28 bg-gradient-to-b from-transparent via-pink-500/15 to-transparent" />
+      <div className="absolute top-[75%] right-0 w-px h-20 bg-gradient-to-b from-transparent via-purple-500/10 to-transparent" />
+
+      {/* Vignette overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(5,5,8,0.6)_100%)]" />
+    </div>
+  );
+}
+
 /* ─── Floating Hearts Background ──────────────────────────────────────────── */
 function FloatingHearts() {
-  const hearts = useMemo(
-    () =>
-      Array.from({ length: 18 }, (_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        delay: Math.random() * 12,
-        duration: 10 + Math.random() * 14,
-        size: 0.7 + Math.random() * 1.2,
-        opacity: 0.15 + Math.random() * 0.35,
-      })),
-    []
-  );
+  const hearts = useMemo(() => {
+    const rand = seededRandom(42);
+    return Array.from({ length: 18 }, (_, i) => ({
+      id: i,
+      left: `${rand() * 100}%`,
+      delay: rand() * 12,
+      duration: 10 + rand() * 14,
+      size: 0.7 + rand() * 1.2,
+      opacity: 0.15 + rand() * 0.35,
+    }));
+  }, []);
+
   return (
     <div className="floating-hearts">
       {hearts.map((h) => (
@@ -50,18 +163,18 @@ function FloatingHearts() {
 
 /* ─── Sparkle Dots Background ─────────────────────────────────────────────── */
 function SparkleDots() {
-  const dots = useMemo(
-    () =>
-      Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: Math.random() * 5,
-        duration: 2 + Math.random() * 3,
-        size: 2 + Math.random() * 4,
-      })),
-    []
-  );
+  const dots = useMemo(() => {
+    const rand = seededRandom(123);
+    return Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: `${rand() * 100}%`,
+      top: `${rand() * 100}%`,
+      delay: rand() * 5,
+      duration: 2 + rand() * 3,
+      size: 2 + rand() * 4,
+    }));
+  }, []);
+
   return (
     <div className="sparkle-container">
       {dots.map((d) => (
@@ -124,21 +237,21 @@ function AuroraBackground() {
 
 /* ─── Confetti Burst ──────────────────────────────────────────────────────── */
 function ConfettiBurst({ show }: { show: boolean }) {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 40 }, (_, i) => ({
-        id: i,
-        x: (Math.random() - 0.5) * 800,
-        y: -(200 + Math.random() * 400),
-        rotate: Math.random() * 720,
-        color: ["#f43f5e", "#a855f7", "#fbbf24", "#ec4899", "#e9d5ff", "#fda4af"][
-          Math.floor(Math.random() * 6)
-        ],
-        size: 6 + Math.random() * 8,
-        delay: Math.random() * 0.4,
-      })),
-    []
-  );
+  const particles = useMemo(() => {
+    const rand = seededRandom(999);
+    const colors = ["#f43f5e", "#a855f7", "#fbbf24", "#ec4899", "#e9d5ff", "#fda4af"];
+    return Array.from({ length: 40 }, (_, i) => ({
+      id: i,
+      x: (rand() - 0.5) * 800,
+      y: -(200 + rand() * 400),
+      rotate: rand() * 720,
+      color: colors[Math.floor(rand() * colors.length)],
+      size: 6 + rand() * 8,
+      delay: rand() * 0.4,
+      borderRadius: rand() > 0.5 ? "50%" : "2px",
+    }));
+  }, []);
+
   return (
     <AnimatePresence>
       {show && (
@@ -168,7 +281,7 @@ function ConfettiBurst({ show }: { show: boolean }) {
                 position: "absolute",
                 width: p.size,
                 height: p.size,
-                borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+                borderRadius: p.borderRadius,
                 background: p.color,
               }}
             />
@@ -199,6 +312,116 @@ function Reveal({
     >
       {children}
     </motion.div>
+  );
+}
+
+/* ─── Video Kenangan Player ───────────────────────────────────────────── */
+function VideoMemory() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+  };
+
+  return (
+    <Reveal>
+      <div className="relative w-full max-w-3xl mx-auto">
+        {/* Container Video dengan Glass Card */}
+        <div
+          className="relative aspect-video rounded-3xl overflow-hidden glass-card cursor-pointer group"
+          onClick={handlePlayClick}
+        >
+          {/* Video Element */}
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            src="/video/kenangan.mp4" // ← Ganti dengan path video kamu
+            onEnded={handleVideoEnd}
+            playsInline
+            preload="metadata"
+          />
+
+          {/* Overlay Gradient bawah */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+          {/* Tombol Play / Pause */}
+          <AnimatePresence mode="wait">
+            {!isPlaying ? (
+              <motion.div
+                key="play"
+                className="absolute inset-0 flex flex-col items-center justify-center z-10"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0, scale: 1.2 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Lingkaran tombol play */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg shadow-pink-500/10 group-hover:scale-110 group-hover:bg-white/15 transition-all duration-300">
+                  {/* Ikon Play (SVG custom) */}
+                  <svg
+                    className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+
+                {/* Teks hint */}
+                <span className="mt-4 text-sm text-white/60 tracking-wide">
+                  Klik untuk memutar
+                </span>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="pause"
+                className="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0 }}
+              >
+                <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 4h4v16H6zm8 0h4v16h-4z" />
+                  </svg>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Label kecil di pojok */}
+          <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none z-10">
+            <div className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+              <span className="text-[10px] sm:text-xs text-white/70 tracking-wider uppercase">
+                Video Kenangan
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Keterangan di bawah video */}
+        <p className="text-center text-gray-500 text-xs mt-6">
+          Taruh file video di{" "}
+          <code className="bg-white/5 px-2 py-0.5 rounded text-pink-400/70">
+            public/video/kenangan.mp4
+          </code>
+        </p>
+      </div>
+    </Reveal>
   );
 }
 
@@ -245,7 +468,9 @@ export default function Home() {
 
   return (
     <div className="w-full bg-[#050508] text-white overflow-hidden relative">
-      {/* Global layers */}
+      {/* Fixed Background Images - Persegi, tetap saat scroll */}
+      <FixedBackgroundImages />
+
       <AuroraBackground />
       <SparkleDots />
       <FloatingHearts />
@@ -256,7 +481,6 @@ export default function Home() {
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 pt-24 pb-20 z-10"
       >
-        {/* Subtle radial glow behind title */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-br from-pink-500/10 via-purple-500/5 to-transparent blur-[120px] pointer-events-none" />
 
         <motion.div
@@ -265,19 +489,17 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          {/* Cake icon */}
           <motion.div
             className="flex justify-center mb-8"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.3 }}
           >
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center backdrop-blur-sm">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-white flex items-center justify-center backdrop-blur-sm">
               <Cake className="w-10 h-10 text-pink-300" />
             </div>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             className="font-playfair text-5xl sm:text-6xl lg:text-8xl font-bold mb-6 gradient-text leading-tight"
             initial={{ opacity: 0, y: 30 }}
@@ -289,7 +511,6 @@ export default function Home() {
             <span className="text-4xl sm:text-5xl lg:text-6xl">Sayangku</span>
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             className="text-base sm:text-lg lg:text-xl text-gray-400 font-light max-w-xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -301,7 +522,6 @@ export default function Home() {
             Hari ini semua tentang kamu.
           </motion.p>
 
-          {/* Divider */}
           <motion.div
             className="flex items-center justify-center gap-3 mt-10"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -314,16 +534,13 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll hint */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8 }}
         >
-          <span className="text-xs text-gray-500 tracking-widest uppercase">
-            Scroll
-          </span>
+          <span className="text-xs text-gray-500 tracking-widest uppercase">Scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -335,7 +552,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* ─── LETTER ────────────────────────────────────────────────────── */}
+      {/* ─── SURAT ─────────────────────────────────────────────────────── */}
       <section className="relative z-10 w-full py-24 sm:py-32 px-6">
         <div className="max-w-2xl mx-auto">
           <Reveal>
@@ -351,7 +568,6 @@ export default function Home() {
 
           <Reveal delay={0.15}>
             <div className="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-              {/* Corner decorations */}
               <div className="absolute top-4 left-4 text-pink-500/20">
                 <Sparkles className="w-6 h-6" />
               </div>
@@ -394,7 +610,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── PRAISES ───────────────────────────────────────────────────── */}
+      {/* ─── PUJIAN ────────────────────────────────────────────────────── */}
       <section className="relative z-10 w-full py-24 sm:py-32 px-6">
         <div className="max-w-4xl mx-auto">
           <Reveal>
@@ -428,7 +644,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── PRAYER ────────────────────────────────────────────────────── */}
+      {/* ─── DOA ───────────────────────────────────────────────────────── */}
       <section className="relative z-10 w-full py-24 sm:py-32 px-6">
         <div className="max-w-2xl mx-auto text-center">
           <Reveal>
@@ -467,7 +683,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── GALLERY ───────────────────────────────────────────────────── */}
+      {/* ─── GALERI ────────────────────────────────────────────────────── */}
       <section className="relative z-10 w-full py-24 sm:py-32 px-6">
         <div className="max-w-4xl mx-auto">
           <Reveal>
@@ -510,7 +726,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── CLOSING ───────────────────────────────────────────────────── */}
+      {/* ─── VIDEO KENANGAN ────────────────────────────────────────────── */}
+      <section className="relative z-10 w-full py-24 sm:py-32 px-6">
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="inline-block text-xs tracking-[0.3em] uppercase text-pink-400/70 mb-4">
+                Momen Berharga
+              </span>
+              <h2 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                Video Kenangan
+              </h2>
+            </div>
+          </Reveal>
+
+          <VideoMemory />
+        </div>
+      </section>
+
+      {/* ─── PENUTUP ───────────────────────────────────────────────────── */}
       <section className="relative z-10 w-full py-24 sm:py-40 px-6">
         <div className="max-w-2xl mx-auto text-center">
           <Reveal>
