@@ -967,11 +967,13 @@ export default function Home() {
         <div className="max-w-2xl mx-auto text-center">
           <Reveal>
             <p className="font-playfair text-2xl sm:text-3xl lg:text-4xl text-gray-200 leading-relaxed mb-10">
-              Semoga hari ini seindah senyummu,
+              Semoga hari ini dan seterusnya seindah senyummu,
               <br />
               dan semoga aku selalu bisa menjadi
               <br />
               bagian dari bahagiamu.
+              <br />
+              I LOVE YOU MORE SAYANGKU..
             </p>
           </Reveal>
 
